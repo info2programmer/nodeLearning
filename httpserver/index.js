@@ -1,5 +1,6 @@
 const http = require("http");
-const url = require("url");
+// const url = require("url");
+const fs = require('fs');
 
 const server = http.createServer((req, res) => {
   switch (req.url) {
@@ -11,6 +12,17 @@ const server = http.createServer((req, res) => {
       break;
     case "/contact":
       res.end("Hello from contact page");
+      break;
+
+      case "/userapi":
+      fs.readFile(`${__dirname}/UserApi/userapi.json`,"utf-8",(err,data)=>{
+        if(err){
+          res.end(`Error ${err}`);
+        }
+        else{
+          res.end(data)
+        }
+      })
       break;
 
     default:

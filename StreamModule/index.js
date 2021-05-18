@@ -16,18 +16,20 @@ server.on("request",(req,res)=>{
     // Stream Way
     const rstream = fs.createReadStream("input.txt")
 
-    rstream.on("data",(data) => {
-        res.write(data)
-    })
+    // rstream.on("data",(data) => {
+    //     res.write(data)
+    // })
 
-    rstream.on("end",()=>{
-        res.end()
-    });
+    // rstream.on("end",()=>{
+    //     res.end()
+    // });
 
-    rstream.on("error",(err)=>{
-        console.log(err)
-        res.end("File not found")
-    })
+    // rstream.on("error",(err)=>{
+    //     console.log(err)
+    //     res.end("File not found")
+    // })
+
+    rstream.pipe(res)
 
 })
 
